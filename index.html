@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME MASTER - La Ruota della Fortuna</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <meta name="theme-color" content="#FFD700"> </head>
+<body>
+    <div class="container">
+        <h1>GAME MASTER</h1>
+        <p>Gira la ruota e scopri se hai vinto!</p>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="500" height="500"></canvas>
+            <div class="pointer"></div> </div>
+        <button id="spinButton">GIRA!</button>
+        <p id="resultMessage"></p>
+    </div>
+
+    <script src="js/wheel.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
