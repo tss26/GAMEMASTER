@@ -93,3 +93,22 @@ button:hover {
     border: 4px solid #00d2ff !important; /* Bordo neon per il centro */
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
 }
+
+/* Assicurati che il canvas non esca dai bordi */
+#wheelCanvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+/* Sistema il puntatore perché sia esattamente al centro in alto */
+.pointer {
+    position: absolute;
+    top: -15px; /* Regola in base alla necessità */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    /* ... resto del codice ... */
+}
