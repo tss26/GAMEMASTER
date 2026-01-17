@@ -68,47 +68,45 @@ function drawWheel() {
     ctx.fill();
 }
 
+// ... (mantenere variabili iniziali colors e prizes)
+
 function spin() {
-    if (isSpinning) return; // Impedisce clic multipli durante il giro
+    if (isSpinning) return;
 
     isSpinning = true;
     spinButton.disabled = true;
     resultMessage.textContent = "Vediamo cosa esce...";
 
-    // 1. Calcolo del vincitore casuale
+    // 1. Calcolo del vincitore
     const winningIndex = Math.floor(Math.random() * numSegments);
     const degreesPerSegment = 360 / numSegments;
 
-    // 2. Logica di rotazione continua
-    // extraDegrees: numero di giri completi (5 giri)
-    const extraDegrees = 1800; 
+    // 2. Rotazione Continua Allineata
+    const extraDegrees = 1800; // 5 giri completi
     
-    // Calcoliamo l'angolo necessario per portare il winningIndex sotto il puntatore (in alto = 270°)
-    // Poiché il canvas disegna 0° a ore 3, compensiamo con -90
-    const targetSegmentDegrees = (360 - (winningIndex * degreesPerSegment)) - 90 - (degreesPerSegment / 2);
+    /* SPIEGAZIONE CALCOLO:
+       - Il canvas parte da destra (0°). Il puntatore è in alto (-90°).
+       - Dobbiamo sottrarre la posizione dello spicchio dalla rotazione totale.
+    */
+    const offsetIniziale = 90; // Sposta lo zero da ore 3 a ore 12
+    const targetSegmentDegrees = (360 - (winningIndex * degreesPerSegment)) - offsetIniziale - (degreesPerSegment / 2);
 
-    // Incrementiamo currentRotation aggiungendo i gradi mancanti rispetto alla posizione attuale
-    // Questo trucco garantisce che la ruota giri sempre nello stesso senso orario
     const currentModulo = currentRotation % 360;
     const additionalRotation = extraDegrees + (targetSegmentDegrees - currentModulo + 360) % 360;
     
     currentRotation += additionalRotation;
 
-    // 3. Applicazione animazione CSS
     canvas.style.transition = 'transform 4s cubic-bezier(0.15, 0, 0.15, 1)';
     canvas.style.transform = `rotate(${currentRotation}deg)`;
     
-    // 4. Gestione risultato
     setTimeout(() => {
         isSpinning = false;
         spinButton.disabled = false;
         
+        // Il risultato ora corrisponderà esattamente allo spicchio sotto il puntatore giallo
         const finalPrize = prizes[winningIndex];
         resultMessage.textContent = `Risultato: ${finalPrize}`;
-        
-        // Se vuoi usare l'alert come prima, decommenta qui sotto:
-        // alert("Hai vinto: " + finalPrize);
-    }, 4000); // 4 secondi come da transizione
+    }, 4000);
 }
 
 spinButton.addEventListener('click', spin);
