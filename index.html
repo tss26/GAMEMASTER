@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAME MASTER - La Ruota della Fortuna</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
-    <meta name="theme-color" content="#FFD700"> </head>
+    
+    <meta name="theme-color" content="#b21f1f"> 
+</head>
 <body>
+
     <div class="container">
         <h1>GAME MASTER</h1>
-        <p>Gira la ruota e scopri se hai vinto!</p>
+        <p>Tenta la fortuna: gira la ruota!</p>
+
         <div class="wheel-container">
+            <div class="pointer"></div>
+            
             <canvas id="wheelCanvas" width="500" height="500"></canvas>
-            <div class="pointer"></div> </div>
-        <button id="spinButton">GIRA!</button>
+            
+            <div class="wheel-center">
+                <img src="assets/icons/icon-192x192.png" alt="GM Logo">
+            </div>
+        </div>
+
+        <button id="spinButton">GIRA ORA!</button>
+        
         <p id="resultMessage"></p>
     </div>
 
